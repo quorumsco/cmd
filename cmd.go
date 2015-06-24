@@ -1,8 +1,12 @@
+/*
+Package cmd is a simple wrapper around codegangsta.cli to provide a
+basic command line interface with no subcommands.
+*/
 package cmd
 
 import "github.com/codegangsta/cli"
 
-const HelpTemplate = `NAME:
+const helpTemplate = `NAME:
    {{.Name}} - {{.Usage}}
 USAGE:
    {{.Name}} {{if .Flags}}[global options] {{end}}command{{if .Flags}} [command options]{{end}} [arguments...]
@@ -18,11 +22,12 @@ COMMANDS:
    {{end}}{{end}}
 `
 
+// New creates a new cmd.
 func New() *cli.App {
 	app := cli.NewApp()
 	app.Action = func(ctx *cli.Context) {}
 	app.HideHelp = true
-	cli.AppHelpTemplate = HelpTemplate
+	cli.AppHelpTemplate = helpTemplate
 
 	return app
 }
